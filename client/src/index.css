@@ -1,0 +1,125 @@
+
+/* antd overridde */
+input{
+  border-radius: 2px !important;
+  border: 1px solid rgba(128, 128, 128, 0.546) !important;
+  height: 40px !important;
+}
+input:focus, .ant-picker{
+  outline: none !important;
+  box-shadow: none !important;
+  border: 1px solid gray !important ;
+}
+label{
+  font-size: 16px !important;
+  color: black !important;
+}
+.ant-form-item{
+  margin: 10px 0 !important;
+}
+.ant-picker-input input{
+  border: none !important ;
+}
+.ant-picker{
+  border-radius: 2px !important;
+  border: 1px solid rgba(128, 128, 128, 0.546) !important;
+  height: 40px !important;
+}
+.box{
+  border: none !important;
+}
+/* common styleing*/
+.spinner-parent{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  width: 100%;
+  background-color: rgba(0, 0, 0, 0.747);
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 9999;
+}
+.spinner-border{
+  width: 5rem; 
+  /* 1 rem = 16px */
+  height: 5rem;
+  color: white !important;
+}
+.page-title{
+  font-size: 25px;
+  color: rgba(0, 0, 0, 0.815);
+  font-weight: bold;
+}
+.card-title{
+  font-size: 22px ;
+  font-weight: bold;
+  color: rgba(0, 0, 0, 0.626);
+}
+.normal-text{
+  font-size: 1rem;
+}
+.card{
+  box-shadow: 0 0 2px rgb(138, 137, 137);
+  border-radius: 0 !important;
+}
+.primary-button{
+  background-color:#238878 !important;
+  border-color: #238878 !important;
+  height: 40px !important;
+  width: 100% !important;
+  color: white !important;
+  font-size: 16px !important;
+  margin-top: 4px !important;
+  margin-bottom: 4px !important;
+  /* width: max-content !important; */
+}
+.full-width-button{
+  width: 100% !important;
+}
+.btn{
+  width: max-content !important;
+  float: right;
+}
+p{
+  color: rgba(0, 0, 0, 0.626) !important;
+  margin: 0 !important;
+  padding-top:0 !important ;
+}
+.anchor{
+  color: black !important;
+  text-decoration: underline;
+  font-size: 16px !important;
+  cursor: pointer;
+}
+.anchor:hover{
+  text-decoration: underline !important;
+  color: #238878 !important;
+}
+.cursor-pointer{
+  cursor: pointer;
+}
+
+/* authentication pages */
+.authentication{
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #238878;
+}
+.authentication_form{
+  width: 400px;
+}
+.authentication .card-title{
+  font-size: 1.5rem;
+  font-weight: bold;
+  background-color: #f38740;
+  color: white !important;
+  max-width: max-content !important;
+  padding: 7px 15px ;
+  margin-left: -40px;
+  border-bottom-left-radius: 10px ;
+
+}
