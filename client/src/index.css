@@ -5,6 +5,9 @@ input{
   border: 1px solid rgba(128, 128, 128, 0.546) !important;
   height: 40px !important;
 }
+#password{
+  border: none !important;
+}
 input:focus, .ant-picker{
   outline: none !important;
   box-shadow: none !important;

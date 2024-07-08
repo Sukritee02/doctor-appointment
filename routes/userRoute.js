@@ -228,22 +228,65 @@ router.post("/book-appointment", authMiddleware, async (req, res) => {
   }
 });
 
+// router.post("/check-booking-availability", authMiddleware, async (req, res) => {
+//   try {
+//     const date = moment(req.body.date, "DD-MM-YYYY").toISOString();
+//     const fromTime = moment(req.body.fromTime, "HH:mm")
+//       .subtract(60, "minutes")
+//       .toISOString();
+//     const toTime = moment(req.body.toTime, "HH:mm")
+//       .add(60, "minutes")
+//       .toISOString();
+//     const doctorId = req.body.doctorId;
+//     const appointments = await Appointment.find({
+//       doctorId,
+//       date,
+//       time: { $gte: fromTime, $lte: toTime },
+//       // status: "approved",
+//     });
+//     if (appointments.length > 0) {
+//       res.status(200).send({
+//         success: false,
+//         message: "Appointments not available",
+//       });
+//     } else {
+//       res.status(200).send({
+//         success: true,
+//         message: "Appointments available",
+//       });
+//     }
+//   } catch (error) {
+//     console.log(error);
+
+//     res.status(500).send({
+//       message: "Error booking appointment",
+//       success: false,
+//       error,
+//     });
+//   }
+// });
+
 router.post("/check-booking-availability", authMiddleware, async (req, res) => {
   try {
-    const date = moment(req.body.date, "DD-MM-YYYY").toISOString();
-    const fromTime = moment(req.body.fromTime, "HH:mm")
-      .subtract(60, "minutes")
-      .toISOString();
-    const toTime = moment(req.body.toTime, "HH:mm")
-      .add(60, "minutes")
-      .toISOString();
+    const date = moment(req.body.date, 'DD-MM-YYYY').toISOString(); // Convert date to ISOString
+    const time = moment(req.body.time, "HH:mm").toISOString(); // Convert time to ISOString
     const doctorId = req.body.doctorId;
+
+    // Calculate the start and end times for the 1-hour range
+    // const startTime = moment(time).subtract(30, 'minutes').toDate();
+    // const endTime = moment(time).add(30, 'minutes').toDate();
+
+    // Calculate the start and end times for the 45-minute range
+    const startTime = moment(time).subtract(22.5, 'minutes').toISOString();
+    const endTime = moment(time).add(22.5, 'minutes').toISOString();
+
+
     const appointments = await Appointment.find({
       doctorId,
       date,
-      time: { $gte: fromTime, $lte: toTime },
-      // status: "approved",
+      time: { $gte: startTime, $lte: endTime },
     });
+
     if (appointments.length > 0) {
       res.status(200).send({
         success: false,
@@ -257,15 +300,13 @@ router.post("/check-booking-availability", authMiddleware, async (req, res) => {
     }
   } catch (error) {
     console.log(error);
-
     res.status(500).send({
-      message: "Error booking appointment",
+      message: "Error checking appointment availability",
       success: false,
       error,
     });
   }
 });
-
 
 router.get("/get-appointments-by-user-id", authMiddleware, async (req, res) => {
   try {

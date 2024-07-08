@@ -18,11 +18,12 @@ const AppointmentSchema = new mongoose.Schema(
       required: true,
     },
     date: {
-      type: String,
+      type: Date, // Change to Date type
       required: true,
-    },
+    }, 
     time: {
-      type: String,
+      type: Date, // Change to Date type
+      // type: String,  Change to String type
       required: true,
     },
     status: {

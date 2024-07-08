@@ -5,6 +5,7 @@ import axios from "axios";
 import toast from "react-hot-toast";
 import { useSelector, useDispatch } from "react-redux";
 import { showLoading, hideLoading } from "../redux/alertsSlice";
+import { EyeOutlined, EyeInvisibleOutlined } from "@ant-design/icons";
 
 function Login() {
   const dispatch = useDispatch();
@@ -38,10 +39,18 @@ function Login() {
               <Input placeholder="Email" />
             </Form.Item>
             <Form.Item label="Password" name="password">
-              <Input placeholder="Password" type="password" />
+              <Input.Password
+                placeholder="Password"
+                iconRender={(visible) =>
+                  visible ? <EyeOutlined /> : <EyeInvisibleOutlined />
+                }
+              />
             </Form.Item>
 
-            <Button className="primary-button mt-30 full-width-button" htmlType="submit">
+            <Button
+              className="primary-button mt-30 full-width-button"
+              htmlType="submit"
+            >
               LOGIN
             </Button>
 

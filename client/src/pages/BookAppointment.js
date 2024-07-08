@@ -51,8 +51,8 @@ function BookAppointment() {
         "/api/user/check-booking-availability",
         {
           doctorId: params.doctorId,
-          date: date,
-          time: time,
+          date: date.format("DD-MM-YYYY"), // Send the date as a moment object
+          time: time.format("HH:mm"), // Send the time as a string in "HH:mm" format
         },
         {
           headers: {
@@ -74,6 +74,8 @@ function BookAppointment() {
   };
 
   const bookNow = async () => {
+    // console.log(date);
+    // console.log(time);
     setIsAvailable(false);
     try {
       dispatch(showLoading());
@@ -84,8 +86,8 @@ function BookAppointment() {
           userId: user._id,
           doctorInfo: doctor,
           userInfo: user,
-          date: date,
-          time: time,
+          date: date.format("DD-MM-YYYY"), // Send the date as a moment object
+          time: time.format("HH:mm"), //Send the time as a string in "HH:mm" format
         },
         {
           headers: {
@@ -96,7 +98,7 @@ function BookAppointment() {
       dispatch(hideLoading());
       if (response.data.success) {
         toast.success(response.data.message);
-        navigate('/appointments')
+        navigate("/appointments");
       }
     } catch (error) {
       toast.error("Error booking appointment");
@@ -117,35 +119,32 @@ function BookAppointment() {
           </h1>
           <hr />
           <Row gutter={20} className="mt-5" align="middle">
-          {/* <Col span={8} sm={24} xs={24} lg={8}>
-               <img src="%PUBLIC_URL%/imagebook.png" alt=""/>
-            </Col> */}
             <Col span={8} sm={24} xs={24} lg={8}>
               <h1 className="normal-text">
                 <b>Timings : </b>
                 {doctor.timings[0]} - {doctor.timings[1]}
               </h1>
               <p>
-                  <b>Phone Number : </b>
-                  {doctor.phoneNumber}
-                </p>
-                <p>
-                  <b>Address : </b>
-                  {doctor.address}
-                </p>
-                <p>
-                  <b>Fee Per Visit : </b>
-                  {doctor.feePerConsultation}
-                </p>
-                <p>
-                  <b>Website: </b>
-                  {doctor.website}
-                </p>
+                <b>Phone Number : </b>
+                {doctor.phoneNumber}
+              </p>
+              <p>
+                <b>Address : </b>
+                {doctor.address}
+              </p>
+              <p>
+                <b>Fee Per Visit : </b>
+                {doctor.feePerConsultation}
+              </p>
+              <p>
+                <b>Website: </b>
+                {doctor.website}
+              </p>
               <div className="d-flex flex-column pt-2 mt-2">
                 <DatePicker
                   format="DD-MM-YYYY"
                   onChange={(value) => {
-                    setDate(moment(value).format("DD-MM-YYYY"));
+                    setDate(value); // Set the date directly without formatting
                     setIsAvailable(false);
                   }}
                 />
@@ -155,26 +154,24 @@ function BookAppointment() {
                   className="mt-3"
                   onChange={(value) => {
                     setIsAvailable(false);
-                    setTime(moment(value).format("HH:mm"));
+                    setTime(value); // Set the time directly without formatting
                   }}
                 />
               </div>
               {!isAvailable && (
                 <Button
-                className="primary-button mt-3 "
-                onClick={checkAvilability}
-              >
-                Check Availablility
-              </Button>
-              )
-              }
+                  className="primary-button mt-3 "
+                  onClick={checkAvilability}
+                >
+                  Check Availablility
+                </Button>
+              )}
               {isAvailable && (
                 <Button className="primary-button mt-3 " onClick={bookNow}>
                   Book Now
                 </Button>
               )}
             </Col>
-            
           </Row>
         </div>
       )}
