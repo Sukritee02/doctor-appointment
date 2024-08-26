@@ -327,5 +327,3 @@ router.get("/get-appointments-by-user-id", authMiddleware, async (req, res) => {
 });
 
 module.exports = router;
-
-// i am building the doctors book appointment website and in that i have used ant design components the issuses is i am putting the time and date of tomorrow but it is sending current date and time i have also us moment to convert the time and date formate and the time format in network is showing 00:00 help me to resolve it
